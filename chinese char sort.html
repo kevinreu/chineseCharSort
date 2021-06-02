@@ -9985,28 +9985,24 @@ async function translate()
 	}
 	const replaceCharacters = (counter) => {
 
-		for(j=0;j<replacements.length;j++)
+		for(var sortedCharsCounter=0;sortedCharsCounter<=sortedChars.length;sortedCharsCounter++)
 		{
-			for(var sortedCharsCounter=0;sortedCharsCounter<=sortedChars.length;sortedCharsCounter++)
+			for(j=0;j<replacements.length;j++)
 			{
 				if (sortedChars[sortedCharsCounter][0]===(replacements[j][1]))
 				{
 					//add char to old array element
-					//document.write(replacements[j][1]);
+					//document.write(sortedCharsCounter);
 					//sortedChars.push(replacements[j][1]);
 					//document.write("work1");
-					sortedChars.splice(sortedChars[sortedCharsCounter][1]/*need to splice in proper place somehow*/, 0, replacements[j][0]);
+					sortedChars[sortedCharsCounter][sortedChars[sortedCharsCounter].length+1]=replacements[j][0];
+					//sortedChars.splice(sortedChars[sortedCharsCounter][1]/*need to splice in proper place somehow*/, 0, replacements[j][0]);
 				}
-				else if (sortedChars[sortedCharsCounter][0]!==(replacements[j][1]))
+				else if (sortedChars.includes(replacements[j][1])==false)//!includes method is needed
 				{
 					//add char and name to new array element
-					//document.write(work1);
 					//document.write("work2");
 					sortedChars.push(replacements[j][1],replacements[j][0]);
-				}
-				else
-				{
-					
 				}
 			}
 		}
